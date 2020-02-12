@@ -1,0 +1,49 @@
+int x = width/2;   //left-right middle of the screen
+float h=10;           //height of Dot
+float w =70;            //width of Dot
+float xVel=1;          //speed in horizontal direction
+Ball b = new Ball();
+    
+public void setup(){
+  size(600,400);
+
+ 
+}
+
+void draw(){
+  
+  background(0);
+  rect(x,height-(height/10),w,h);
+  checkKeyPresses();
+  b.show();
+  b.update();
+  b.bounceAtEdge();
+  ballCollision();
+}
+ 
+ 
+ void checkKeyPresses(){
+  if(keyPressed){
+  
+      if(keyCode==LEFT){
+        x-=5;
+      }
+      else if(keyCode==RIGHT){
+        x+=5;
+      }
+
+  }
+ }
+  
+void ballCollision(){
+  checkKeyPresses();
+  if(x<b.x && b.x<x+w && height-(height/10)<b.y && b.y<(height-(height/10))+h){
+    b.xVel*=-1;
+    b.yVel*=-1;
+  }
+
+}
+
+ 
+ 
+ 
